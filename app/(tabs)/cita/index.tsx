@@ -48,7 +48,7 @@ const NuevaCita: React.FC = () => {
         <Text style={styles.dropdownText}>
           {selectedService || "¿Qué servicio necesitas?"}
         </Text>
-        <AntDesign name="down" size={16} color="#6B4F3B" />
+        <AntDesign name="down" size={16} color="#45363A" />
       </TouchableOpacity>
 
       {/* Modal con scroll y cierre al hacer clic fuera */}
@@ -98,7 +98,7 @@ const NuevaCita: React.FC = () => {
   );
 };
 
-const BORDER_COLOR = "#6B4F3B";
+const BORDER_COLOR = "#45363A";
 
 const styles = StyleSheet.create({
   container: {

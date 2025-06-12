@@ -98,7 +98,7 @@ function formatDateISO(date: Date): string {
   return date.toISOString().split("T")[0];
 }
 
-const BORDER_COLOR = "#6B4F3B";
+const BORDER_COLOR = "#45363A";
 
 const CitaFecha: React.FC = () => {
   const [fechaSeleccionada, setFechaSeleccionada] = useState<Date>(new Date());

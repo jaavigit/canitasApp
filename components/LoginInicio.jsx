@@ -1,24 +1,31 @@
-import { useRouter } from 'expo-router';
+import { Link, useRouter } from "expo-router";
 import { useState } from "react";
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import {
+  Dimensions,
+  Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
+
 
 export default function LoginInicio() {
   const router = useRouter();
-
   const [numeroSocio, setNumeroSocio] = useState("");
   const [telefono, setTelefono] = useState("");
 
   const handleLogin = () => {
-    // Aquí pones tu lógica de autenticación, por ejemplo:
-    // validar campos, enviar a backend, guardar token, etc.
-
-    // ✅ Una vez autenticado, reemplaza la ruta con las tabs
-    router.replace('home');
+    router.replace("home");
   };
 
   return (
     <View style={styles.container}>
+      
       <View style={styles.panel}>
+        <View style={styles.logoContainer} />
+
         <TextInput
           style={styles.input}
           placeholder="Número de socio"
@@ -40,9 +47,25 @@ export default function LoginInicio() {
           <Text style={styles.buttonText}>Iniciar sesión</Text>
         </TouchableOpacity>
       </View>
+
+      {/* Botones inferiores */}
+      <View style={styles.bottomButtonsContainer}>
+        <Link href="/nuevocliente" style={[styles.bottomButton, styles.leftButton]}>
+          <Pressable>
+            <Text style={styles.bottomButtonText}>Hazte Socio</Text>
+          </Pressable>
+        </Link>
+        <Link href="/nCliente/handleNuevoCliente" style={[styles.bottomButton, styles.rightButton]}>
+          <Pressable>
+            <Text style={styles.bottomButtonText}>Ventajas</Text>
+          </Pressable>
+        </Link>
+      </View>
     </View>
   );
 }
+
+const { width } = Dimensions.get("window");
 
 const styles = StyleSheet.create({
   container: {
@@ -52,10 +75,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   panel: {
-    backgroundColor: "#6B4F3B",
+    backgroundColor: "#45363A",
     padding: 24,
     borderRadius: 12,
     width: "80%",
+  },
+  logoContainer: {
+    alignItems: "center",
+    marginBottom: 20,
   },
   input: {
     borderWidth: 1.5,
@@ -74,8 +101,42 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   buttonText: {
-    color: "#6B4F3B",
+    color: "#45363A",
     fontWeight: "bold",
     fontSize: 16,
+  },
+  bottomButtonsContainer: {
+    position: "absolute",
+    bottom: 0,
+    flexDirection: "row",
+    width: "100%",
+    justifyContent: "space-evenly",
+    paddingBottom: 20,
+    backgroundColor: "#f0f0f0",
+    paddingTop: 16,
+  },
+
+  bottomButton: {
+    paddingVertical: 18, // más alto
+    paddingHorizontal: 36, // más ancho
+    borderTopLeftRadius: 24,
+    borderTopRightRadius: 24,
+    minWidth: 150,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  bottomButtonText: {
+    color: "#45363A", // color solicitado
+    fontWeight: "bold",
+    fontSize: 17,
+    textAlign: "center",
+  },
+
+  leftButton: {
+    backgroundColor: "#80ccec",
+  },
+  rightButton: {
+    backgroundColor: "#f07c3c",
   },
 });

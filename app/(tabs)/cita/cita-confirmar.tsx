@@ -4,7 +4,7 @@ import { useRouter } from "expo-router";
 import { useState } from "react";
 import { Modal, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-const BORDER_COLOR = "#6B4F3B";
+const BORDER_COLOR = "#45363A";
 
 const CitaConfirmar = () => {
   const [modalVisible, setModalVisible] = useState(false);

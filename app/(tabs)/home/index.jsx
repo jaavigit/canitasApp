@@ -1,11 +1,7 @@
 import { Image } from 'expo-image';
-import { Pressable, StyleSheet, Text } from 'react-native';
+import { StyleSheet } from 'react-native';
 
-import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-import { Link } from 'expo-router';
 
 export default function Home() {
       return (
@@ -17,16 +13,7 @@ export default function Home() {
                               style={styles.reactLogo}
                         />
                   }>
-                  <ThemedView style={styles.titleContainer}>
-                        <ThemedText type="title">Bienvenido Javier Moncayo!</ThemedText>
-                        <HelloWave />
-                  </ThemedView>
 
-                   <Link href={'/home/nueva-cita'} asChild>
-                        <Pressable>
-                              <Text>Avanzar</Text>
-                        </Pressable>
-                  </Link>
             </ParallaxScrollView>
       );
 }

@@ -4,10 +4,8 @@ import { Platform } from "react-native";
 
 import { HapticTab } from "@/components/HapticTab";
 import { IconSymbol } from "@/components/ui/IconSymbol";
-import TabBarBackground from "@/components/ui/TabBarBackground";
-import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
-import Fontisto from '@expo/vector-icons/Fontisto';
+import Fontisto from "@expo/vector-icons/Fontisto";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -15,17 +13,18 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
         headerShown: false,
         tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: "absolute",
-          },
-          default: {},
-        }),
+        tabBarStyle: {
+          backgroundColor: "#45363A", // Marrón oscuro, como tu login
+          borderTopWidth: 0,
+          position: Platform.OS === "ios" ? "absolute" : "relative",
+        },
+        tabBarActiveTintColor: "white", // Color de texto e icono activos
+        tabBarInactiveTintColor: "#D8D8D8", // Color de texto e icono inactivos
+        tabBarLabelStyle: {
+          fontWeight: "bold",
+        },
       }}
     >
       <Tabs.Screen
