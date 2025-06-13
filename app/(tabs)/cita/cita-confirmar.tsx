@@ -4,7 +4,7 @@ import { useRouter } from "expo-router";
 import { useState } from "react";
 import { Modal, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-const BORDER_COLOR = "#45363A";
+const BORDER_COLOR = "#6B4F3B";
 
 const CitaConfirmar = () => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -33,8 +33,8 @@ const CitaConfirmar = () => {
 
       <AntDesign
         name="warning"
-        size={50}
-        color={BORDER_COLOR}
+        size={60}
+        color="#f1c813"
         style={styles.icon}
       />
 
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     paddingTop: 60,
-    backgroundColor: "#fff",
+    backgroundColor: "#f3f3f3"
   },
   introText: {
     fontSize: 18,
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
     color: "#000",
   },
   botonConfirmar: {
-    backgroundColor: BORDER_COLOR,
+    backgroundColor: "#88b3de",
     padding: 15,
     borderRadius: 6,
     alignItems: "center",
@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
     color: "#333",
   },
   modalButton: {
-    backgroundColor: BORDER_COLOR,
+    backgroundColor: "#88b3de",
     paddingVertical: 12,
     paddingHorizontal: 30,
     borderRadius: 6,

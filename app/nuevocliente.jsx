@@ -1,4 +1,4 @@
-import FormNuevoCliente from '../components/LoginInicio';
+import FormNuevoCliente from '../components/FormNuevoCliente';
 
 export default function nuevocliente() {
 

@@ -5,13 +5,16 @@ import { View } from "react-native";
 
 export default function TabTwoScreen() {
   return (
-    <View>
+    <View style={styles.container}> 
           <Stack.Screen/>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  container:{
+    backgroundColor: "#f3f3f3"
+  },
   headerImage: {
     color: '#808080',
     bottom: -90,

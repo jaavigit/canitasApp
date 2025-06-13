@@ -1,5 +1,5 @@
 import { AntDesign, MaterialIcons } from "@expo/vector-icons";
-import { Event as DateTimePickerEvent } from "@react-native-community/datetimepicker";
+import DateTimePicker, { Event as DateTimePickerEvent } from "@react-native-community/datetimepicker";
 import { Link } from "expo-router";
 import React, { useState } from "react";
 import {
@@ -28,24 +28,24 @@ const clinicas: Clinica[] = [
     id: 1,
     nombre: "Madrid - Vallecas - CC La Gavia",
     fechas: [
-      { fecha: "2025-06-11", horas: ["09:00", "11:00", "15:00"] },
-      { fecha: "2025-06-12", horas: ["10:00", "13:00"] },
+      { fecha: "2025-06-13", horas: ["09:00", "11:00", "15:00"] },
+      { fecha: "2025-06-14", horas: ["10:00", "13:00"] },
     ],
   },
   {
     id: 2,
     nombre: "Barcelona - Eixample",
     fechas: [
-      { fecha: "2025-06-11", horas: ["10:00", "13:00", "14:30"] },
-      { fecha: "2025-06-13", horas: [] },
+      { fecha: "2025-06-15", horas: ["10:00", "13:00", "14:30"] },
+      { fecha: "2025-06-13", horas: ["10:00", "13:00"] },
     ],
   },
   {
     id: 3,
     nombre: "Valencia - Centro",
     fechas: [
-      { fecha: "2025-06-11", horas: [] },
-      { fecha: "2025-06-12", horas: ["08:00", "09:30"] },
+      { fecha: "2025-06-17", horas: [] },
+      { fecha: "2025-06-18", horas: ["08:00", "09:30"] },
     ],
   },
   {
@@ -63,27 +63,12 @@ const clinicas: Clinica[] = [
 const CLINICA_POR_DEFECTO = "Madrid - Vallecas - CC La Gavia - consulta";
 
 const meses = [
-  "Enero",
-  "Febrero",
-  "Marzo",
-  "Abril",
-  "Mayo",
-  "Junio",
-  "Julio",
-  "Agosto",
-  "Septiembre",
-  "Octubre",
-  "Noviembre",
-  "Diciembre",
+  "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+  "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre",
 ];
+
 const diasSemana = [
-  "Domingo",
-  "Lunes",
-  "Martes",
-  "Miércoles",
-  "Jueves",
-  "Viernes",
-  "Sábado",
+  "Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado",
 ];
 
 function formatearFecha(date: Date): string {
@@ -104,12 +89,10 @@ const CitaFecha: React.FC = () => {
   const [fechaSeleccionada, setFechaSeleccionada] = useState<Date>(new Date());
   const [showDatePicker, setShowDatePicker] = useState<boolean>(false);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
-  const [clinicaSeleccionada, setClinicaSeleccionada] =
-    useState<Clinica | null>(
-      clinicas.find((c) =>
-        c.nombre.startsWith("Madrid - Vallecas - CC La Gavia")
-      ) || null
-    );
+  const [clinicaSeleccionada, setClinicaSeleccionada] = useState<Clinica | null>(
+    clinicas.find((c) => c.nombre.startsWith("Madrid - Vallecas - CC La Gavia")) || null
+  );
+  const [horaSeleccionada, setHoraSeleccionada] = useState<string | null>(null);
 
   const abrirDatePicker = () => setShowDatePicker(true);
   const cerrarDatePicker = () => setShowDatePicker(false);
@@ -118,13 +101,8 @@ const CitaFecha: React.FC = () => {
     event: DateTimePickerEvent,
     selectedDate?: Date | undefined
   ) => {
-    // event.type puede ser 'set' o 'dismissed'
-    if (event.type === "dismissed") {
-      cerrarDatePicker();
-      return;
-    }
     cerrarDatePicker();
-    if (selectedDate) {
+    if (event.type !== "dismissed" && selectedDate) {
       setFechaSeleccionada(selectedDate);
     }
   };
@@ -137,9 +115,7 @@ const CitaFecha: React.FC = () => {
   const getHorasDisponibles = (): string[] => {
     if (!clinicaSeleccionada) return [];
     const fechaStr = formatDateISO(fechaSeleccionada);
-    const fechaObj = clinicaSeleccionada.fechas.find(
-      (f) => f.fecha === fechaStr
-    );
+    const fechaObj = clinicaSeleccionada.fechas.find((f) => f.fecha === fechaStr);
     return fechaObj ? fechaObj.horas : [];
   };
 
@@ -149,7 +125,7 @@ const CitaFecha: React.FC = () => {
     if (horasDisponibles.length === 0) {
       return (
         <View style={styles.noHorasContainer}>
-          <MaterialIcons name="warning" size={40} color={BORDER_COLOR} />
+          <MaterialIcons name="warning" size={60} color={"#f1c813"} />
           <Text style={styles.noHorasText}>
             No hay citas disponibles en la fecha seleccionada
           </Text>
@@ -157,57 +133,60 @@ const CitaFecha: React.FC = () => {
       );
     }
 
-    const filas: string[][] = [];
+    const filas: (string | null)[][] = [];
     for (let i = 0; i < horasDisponibles.length; i += 3) {
-      filas.push(horasDisponibles.slice(i, i + 3));
+      const fila = horasDisponibles.slice(i, i + 3);
+      while (fila.length < 3) fila.push('');
+      filas.push(fila);
     }
 
     return filas.map((fila, index) => (
       <View style={styles.filaHoras} key={index}>
-        {fila.map((hora) => (
-          <View key={hora} style={styles.cajaHora}>
-            <Text style={styles.textoHora}>{hora}</Text>
-          </View>
-        ))}
+        {fila.map((hora, i) =>
+          hora ? (
+            <TouchableOpacity
+              key={hora}
+              onPress={() => setHoraSeleccionada(hora)}
+              style={[styles.cajaHora, horaSeleccionada === hora && styles.cajaHoraSeleccionada]}
+            >
+              <Text
+                style={[styles.textoHora, horaSeleccionada === hora && styles.textoHoraSeleccionada]}
+              >
+                {hora}
+              </Text>
+            </TouchableOpacity>
+          ) : (
+            <View key={`empty-${i}`} style={[styles.cajaHora, { opacity: 0 }]} />
+          )
+        )}
       </View>
     ));
   };
 
-  const textoClinica = clinicaSeleccionada
-    ? clinicaSeleccionada.nombre
-    : CLINICA_POR_DEFECTO;
-
   return (
     <View style={styles.container}>
       <Text style={styles.fechaTexto}>{formatearFecha(fechaSeleccionada)}</Text>
-      <Text style={styles.clinicaTexto}>{textoClinica}</Text>
+      <Text style={styles.clinicaTexto}>{clinicaSeleccionada?.nombre || CLINICA_POR_DEFECTO}</Text>
 
-      <TouchableOpacity
-        style={styles.botonCalendario}
-        onPress={abrirDatePicker}
-      >
+      <TouchableOpacity style={styles.botonCalendario} onPress={abrirDatePicker}>
         <AntDesign name="calendar" size={24} color="#fff" />
         <Text style={styles.textoBotonCalendario}>Seleccionar fecha</Text>
       </TouchableOpacity>
 
-      {/* {showDatePicker && (
+      {showDatePicker && (
         <DateTimePicker
           value={fechaSeleccionada}
           mode="date"
-          display="calendar"
+          display="default"
           onChange={onChangeDate}
         />
-      )} */}
+      )}
 
       <TouchableOpacity
         style={styles.dropdownButton}
         onPress={() => setModalVisible(true)}
       >
-        <Text style={styles.dropdownText}>
-          {clinicaSeleccionada
-            ? clinicaSeleccionada.nombre
-            : "Seleccionar otra clínica"}
-        </Text>
+        <Text style={styles.dropdownText}>{clinicaSeleccionada?.nombre || "Seleccionar otra clínica"}</Text>
         <AntDesign name="down" size={16} color={BORDER_COLOR} />
       </TouchableOpacity>
 
@@ -217,10 +196,7 @@ const CitaFecha: React.FC = () => {
         visible={modalVisible}
         onRequestClose={() => setModalVisible(false)}
       >
-        <Pressable
-          style={styles.modalOverlay}
-          onPress={() => setModalVisible(false)}
-        >
+        <Pressable style={styles.modalOverlay} onPress={() => setModalVisible(false)}>
           <Pressable style={styles.modalContent} onPress={() => {}}>
             <ScrollView>
               {clinicas.map((clinica) => (
@@ -237,12 +213,7 @@ const CitaFecha: React.FC = () => {
         </Pressable>
       </Modal>
 
-      <ScrollView
-        style={styles.contenedorHoras}
-        keyboardShouldPersistTaps="handled"
-      >
-        {renderHoras()}
-      </ScrollView>
+      <ScrollView style={styles.contenedorHoras}>{renderHoras()}</ScrollView>
 
       <Link href="/cita/cita-confirmar" asChild>
         <Pressable style={styles.searchButton}>
@@ -258,6 +229,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     paddingTop: 60,
+    backgroundColor: "#f3f3f3",
   },
   fechaTexto: {
     fontSize: 18,
@@ -272,14 +244,14 @@ const styles = StyleSheet.create({
   botonCalendario: {
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: BORDER_COLOR,
+    backgroundColor: "#88b3de",
     padding: 12,
     borderRadius: 6,
     marginBottom: 20,
     justifyContent: "center",
   },
   textoBotonCalendario: {
-    color: "#fff",
+    color: "white",
     fontWeight: "bold",
     marginLeft: 10,
     fontSize: 16,
@@ -332,7 +304,7 @@ const styles = StyleSheet.create({
   cajaHora: {
     flex: 1 / 3,
     borderWidth: 1,
-    borderColor: BORDER_COLOR,
+    borderColor: "#88b3de",
     borderRadius: 6,
     paddingVertical: 10,
     marginHorizontal: 5,
@@ -341,6 +313,14 @@ const styles = StyleSheet.create({
   textoHora: {
     fontSize: 16,
     color: "#000",
+  },
+  cajaHoraSeleccionada: {
+    backgroundColor: "#88b3de",
+    borderColor: BORDER_COLOR,
+  },
+  textoHoraSeleccionada: {
+    color: "white",
+    fontWeight: "bold",
   },
   noHorasContainer: {
     flex: 1,
@@ -355,7 +335,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   searchButton: {
-    backgroundColor: BORDER_COLOR,
+    backgroundColor: "#88b3de",
     padding: 15,
     borderRadius: 6,
     alignItems: "center",

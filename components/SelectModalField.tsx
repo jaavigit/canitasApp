@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import {
-    FlatList,
-    Modal,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
+  FlatList,
+  Modal,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 
 type Props = {
@@ -56,7 +56,7 @@ const SelectModalField = ({ title, options, selectedValue, onSelect }: Props) =>
 const styles = StyleSheet.create({
   field: {
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: '#45363A',
     borderRadius: 8,
     padding: 10,
     marginBottom: 12,

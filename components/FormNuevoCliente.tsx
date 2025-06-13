@@ -1,112 +1,123 @@
-import React, { useState } from 'react';
+import { Link } from "expo-router";
+import React, { useState } from "react";
 import {
-    ScrollView,
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
-} from 'react-native';
-import SelectModalField from './SelectModalField';
+  Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const FormNuevoCliente = () => {
   // Datos personales
-  const [telefono, setTelefono] = useState('');
-  const [domicilio, setDomicilio] = useState('');
-  const [numero, setNumero] = useState('');
-  const [piso, setPiso] = useState('');
-  const [codigoPostal, setCodigoPostal] = useState('');
-  const [provincia, setProvincia] = useState('');
-  const [poblacion, setPoblacion] = useState('');
-
-  // Datos de la mascota
-  const [nombreMascota, setNombreMascota] = useState('');
-  const [especie, setEspecie] = useState<'canina' | 'felina' | 'otros' | null>(null);
-  const [raza, setRaza] = useState('');
-  const [sexo, setSexo] = useState('');
-  const [fechaNacimiento, setFechaNacimiento] = useState('');
-  const [clinica, setClinica] = useState('');
+  const [telefono, setTelefono] = useState("");
+  const [domicilio, setDomicilio] = useState("");
+  const [numero, setNumero] = useState("");
+  const [piso, setPiso] = useState("");
+  const [codigoPostal, setCodigoPostal] = useState("");
+  const [provincia, setProvincia] = useState("");
+  const [poblacion, setPoblacion] = useState("");
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.sectionTitle}>Datos Personales</Text>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#45363A" }}>
+      <View style={styles.container}>
+        <Text style={styles.sectionTitle}>Datos Personales</Text>
 
-      <TextInput style={styles.input} placeholder="Teléfono" value={telefono} onChangeText={setTelefono} />
-      <TextInput style={styles.input} placeholder="Domicilio" value={domicilio} onChangeText={setDomicilio} />
-      <TextInput style={styles.input} placeholder="Número" value={numero} onChangeText={setNumero} />
-      <TextInput style={styles.input} placeholder="Piso" value={piso} onChangeText={setPiso} />
-      <TextInput style={styles.input} placeholder="Código Postal" value={codigoPostal} onChangeText={setCodigoPostal} />
-      <TextInput style={styles.input} placeholder="Provincia" value={provincia} onChangeText={setProvincia} />
-      <TextInput style={styles.input} placeholder="Población" value={poblacion} onChangeText={setPoblacion} />
+        <TextInput
+          style={styles.input}
+          placeholder="Teléfono"
+          placeholderTextColor="#999"
+          value={telefono}
+          onChangeText={setTelefono}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Domicilio"
+          placeholderTextColor="#999"
+          value={domicilio}
+          onChangeText={setDomicilio}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Número"
+          placeholderTextColor="#999"
+          value={numero}
+          onChangeText={setNumero}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Piso"
+          placeholderTextColor="#999"
+          value={piso}
+          onChangeText={setPiso}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Código Postal"
+          placeholderTextColor="#999"
+          value={codigoPostal}
+          onChangeText={setCodigoPostal}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Provincia"
+          placeholderTextColor="#999"
+          value={provincia}
+          onChangeText={setProvincia}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Población"
+          placeholderTextColor="#999"
+          value={poblacion}
+          onChangeText={setPoblacion}
+        />
 
-      <Text style={styles.sectionTitle}>Datos de tu Mascota</Text>
-
-      <TextInput style={styles.input} placeholder="Nombre de la mascota" value={nombreMascota} onChangeText={setNombreMascota} />
-
-      <Text style={styles.label}>Especie</Text>
-      <View style={styles.radioContainer}>
-        {['canina', 'felina', 'otros'].map((option) => (
-          <TouchableOpacity key={option} onPress={() => setEspecie(option as any)} style={styles.radioItem}>
-            <View style={[styles.radioCircle, especie === option && styles.selected]} />
-            <Text>{option}</Text>
-          </TouchableOpacity>
-        ))}
+        <Link href="/nuevamascota" asChild>
+          <Pressable style={styles.searchButton}>
+            <Text style={styles.searchButtonText}>Continuar</Text>
+          </Pressable>
+        </Link>
       </View>
-
-      <SelectModalField
-        title="Raza"
-        options={['Labrador', 'Persa', 'Mestizo']}
-        selectedValue={raza}
-        onSelect={setRaza}
-      />
-
-      <SelectModalField
-        title="Sexo"
-        options={['Macho', 'Hembra']}
-        selectedValue={sexo}
-        onSelect={setSexo}
-      />
-
-      <TextInput
-        style={styles.input}
-        placeholder="Fecha de nacimiento (dd/mm/aaaa)"
-        value={fechaNacimiento}
-        onChangeText={setFechaNacimiento}
-      />
-
-      <SelectModalField
-        title="Clínica"
-        options={['Madrid - Vallecas - CC La Gavia', 'Barcelona - Sants', 'Valencia - Ruzafa']}
-        selectedValue={clinica}
-        onSelect={setClinica}
-      />
-    </ScrollView>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: { padding: 16 },
-  sectionTitle: { fontSize: 18, fontWeight: 'bold', marginTop: 24, marginBottom: 12 },
+  container: {
+    padding: 16,
+    backgroundColor: "#f3f3f3",
+    flex: 1,
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginBottom: 12,
+    color: "#45363A",
+  },
   input: {
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: "#45363A",
     borderRadius: 8,
     padding: 10,
     marginBottom: 12,
+    color: "#45363A",
   },
-  label: { fontWeight: 'bold', marginBottom: 8 },
-  radioContainer: { flexDirection: 'row', marginBottom: 16 },
-  radioItem: { flexDirection: 'row', alignItems: 'center', marginRight: 16 },
-  radioCircle: {
-    width: 16,
-    height: 16,
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: '#333',
-    marginRight: 8,
+  searchButton: {
+    backgroundColor: "#88b3de",
+    padding: 15,
+    borderRadius: 6,
+    alignItems: "center",
+    position: "absolute",
+    bottom: 20,
+    left: 20,
+    right: 20,
   },
-  selected: {
-    backgroundColor: '#333',
+  searchButtonText: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "bold",
   },
 });
 

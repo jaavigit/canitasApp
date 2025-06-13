@@ -106,6 +106,7 @@ const styles = StyleSheet.create({
     padding: 20,
     justifyContent: "flex-start",
     paddingTop: 60,
+    backgroundColor: "#f3f3f3"
   },
   label: {
     fontSize: 16,
@@ -165,7 +166,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   searchButton: {
-    backgroundColor: BORDER_COLOR,
+    backgroundColor: "#88b3de",
     padding: 15,
     borderRadius: 6,
     alignItems: "center",

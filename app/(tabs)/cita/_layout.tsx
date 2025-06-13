@@ -9,10 +9,27 @@ export default function HomeLayout() {
           headerShown: false,
         }}
       />
-      <Stack.Screen name="cita-fecha" options={{ title: "Fecha de la cita" }} />
+      <Stack.Screen
+        name="cita-fecha"
+        options={{
+          title: "Fecha cita",
+          headerStyle: {
+            backgroundColor: "#45363A",
+          },
+          headerTintColor: "white",
+          headerTitleAlign: "center"
+        }}
+      />
       <Stack.Screen
         name="cita-confirmar"
-        options={{ title: "Confirmar cita" }}
+        options={{
+          title: "Confirmar cita",
+          headerStyle: {
+            backgroundColor: "#45363A",
+          },
+          headerTintColor: "white",
+          headerTitleAlign: "center"
+        }}
       />
     </Stack>
   );

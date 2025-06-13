@@ -5,7 +5,8 @@ import { Platform } from "react-native";
 import { HapticTab } from "@/components/HapticTab";
 import { IconSymbol } from "@/components/ui/IconSymbol";
 import { useColorScheme } from "@/hooks/useColorScheme";
-import Fontisto from "@expo/vector-icons/Fontisto";
+import AntDesign from '@expo/vector-icons/AntDesign';
+import FontAwesome from '@expo/vector-icons/FontAwesome';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -32,25 +33,25 @@ export default function TabLayout() {
         options={{
           title: "Home",
           tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="house.fill" color={color} />
+            <IconSymbol size={26} name="house.fill" color={color} />
           ),
         }}
       />
       <Tabs.Screen
         name="cita"
         options={{
-          title: "Nueva cita",
+          title: "Cita",
           tabBarIcon: ({ color }) => (
-            <Fontisto name="date" size={28} color={color} />
+            <AntDesign name="pluscircleo" size={26} color={color} />
           ),
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="perfil"
         options={{
-          title: "Explore",
+          title: "Perfil",
           tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="paperplane.fill" color={color} />
+            <FontAwesome name="user-o" size={26} color={color} />
           ),
         }}
       />
