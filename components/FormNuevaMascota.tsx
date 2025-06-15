@@ -1,18 +1,14 @@
 import SelectModalField from "@/components/SelectModalField"; // ajusta la ruta si es necesario
 import { Link } from "expo-router";
 import React, { useState } from "react";
-import {
-  Pressable,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from "react-native";
+import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const FormNuevaMascota = () => {
   const [nombreMascota, setNombreMascota] = useState("");
-  const [especie, setEspecie] = useState<"Canina" | "Felina" | "Otros" | null>(null);
+  const [especie, setEspecie] = useState<"Canina" | "Felina" | "Otros" | null>(
+    null
+  );
   const [raza, setRaza] = useState("");
   const [sexo, setSexo] = useState("");
   const [fechaNacimiento, setFechaNacimiento] = useState("");
@@ -31,16 +27,26 @@ const FormNuevaMascota = () => {
           onChangeText={setNombreMascota}
         />
 
+        <TextInput
+          style={styles.input}
+          placeholder="Fecha de nacimiento (dd/mm/aaaa)"
+          placeholderTextColor="#999"
+          value={fechaNacimiento}
+          onChangeText={setFechaNacimiento}
+        />
+
         <SelectModalField
           title="Especie"
           options={["canina", "felina", "otros"]}
           selectedValue={especie ?? ""}
-          onSelect={(value) => setEspecie(value as "canina" | "felina" | "otros")}
+          onSelect={(value) =>
+            setEspecie(value as "Canina" | "Felina" | "Otros")
+          }
         />
 
         <SelectModalField
           title="Raza"
-          options={["Labrador", "Persa", "Mestizo", "Otro"]} // puedes reemplazar por las reales
+          options={["Labrador", "Persa", "Mestizo", "Otro"]}
           selectedValue={raza}
           onSelect={setRaza}
         />
@@ -50,14 +56,6 @@ const FormNuevaMascota = () => {
           options={["Macho", "Hembra"]}
           selectedValue={sexo}
           onSelect={setSexo}
-        />
-
-        <TextInput
-          style={styles.input}
-          placeholder="Fecha de nacimiento (dd/mm/aaaa)"
-          placeholderTextColor="#999"
-          value={fechaNacimiento}
-          onChangeText={setFechaNacimiento}
         />
 
         <SelectModalField
@@ -71,7 +69,7 @@ const FormNuevaMascota = () => {
           onSelect={setClinica}
         />
 
-        <Link href="/cita/cita-confirmar" asChild>
+        <Link href="/detallespago" asChild>
           <Pressable style={styles.searchButton}>
             <Text style={styles.searchButtonText}>Continuar</Text>
           </Pressable>
@@ -90,7 +88,6 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 18,
     fontWeight: "bold",
-    marginTop: 24,
     marginBottom: 12,
     color: "#45363A",
   },

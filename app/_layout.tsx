@@ -43,7 +43,7 @@ export default function RootLayout() {
                 backgroundColor: "#45363A",
               },
               headerTintColor: "white",
-              headerTitleAlign: "center"
+              headerTitleAlign: "center",
             }}
           />
           <Stack.Screen
@@ -54,7 +54,40 @@ export default function RootLayout() {
                 backgroundColor: "#45363A",
               },
               headerTintColor: "white",
-              headerTitleAlign: "center"
+              headerTitleAlign: "center",
+            }}
+          />
+          <Stack.Screen
+            name="formpago"
+            options={{
+              title: "Información de pago",
+              headerStyle: {
+                backgroundColor: "#45363A",
+              },
+              headerTintColor: "white",
+              headerTitleAlign: "center",
+            }}
+          />
+          <Stack.Screen
+            name="detallespago"
+            options={{
+              title: "Pago",
+              headerStyle: {
+                backgroundColor: "#45363A",
+              },
+              headerTintColor: "white",
+              headerTitleAlign: "center",
+            }}
+          />
+          <Stack.Screen
+            name="redsyswv"
+            options={{
+              title: "Pago",
+              headerStyle: {
+                backgroundColor: "#45363A",
+              },
+              headerTintColor: "white",
+              headerTitleAlign: "center",
             }}
           />
           <Stack.Screen
@@ -65,7 +98,7 @@ export default function RootLayout() {
                 backgroundColor: "#45363A",
               },
               headerTintColor: "white",
-              headerTitleAlign: "center"
+              headerTitleAlign: "center",
             }}
           />
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />

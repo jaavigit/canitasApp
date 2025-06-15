@@ -13,15 +13,14 @@ import {
 } from "react-native";
 
 const options: string[] = [
-  "Asesoramiento financiero",
+  "Vacunas",
   "Gestión de cuentas",
   "Atención al cliente",
   "Préstamos",
-  "Inversiones",
+  "Compras",
   "Diario",
-  "Unico",
-  "Letions",
-  "Awake",
+  "Peluqueria",
+  "Operación",
   "Otro",
 ];
 

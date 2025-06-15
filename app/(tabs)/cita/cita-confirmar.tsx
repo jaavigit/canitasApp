@@ -1,10 +1,9 @@
 import { AntDesign } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
-
 import { useState } from "react";
 import { Modal, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-const BORDER_COLOR = "#6B4F3B";
+const BORDER_COLOR = "#88b3de";
 
 const CitaConfirmar = () => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -21,48 +20,49 @@ const CitaConfirmar = () => {
 
   const handleCloseModal = () => {
     setModalVisible(false);
-    router.replace('/cita');
+    router.replace("/cita");
     router.push("/home");
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.introText}>
-        Por favor, confirma que tus datos son correctos
-      </Text>
+      <View style={styles.resumenBox}>
+        <Text style={styles.introText}>
+          Por favor, confirma que tus datos son correctos
+        </Text>
 
-      <AntDesign
-        name="warning"
-        size={60}
-        color="#f1c813"
-        style={styles.icon}
-      />
+        <AntDesign
+          name="warning"
+          size={60}
+          color="#f1c813"
+          style={styles.icon}
+        />
 
-      <View style={styles.item}>
-        <Text style={styles.titulo}>Fecha y hora</Text>
-        <Text style={styles.contenido}>{fechaHora}</Text>
-      </View>
+        <View style={styles.item}>
+          <Text style={styles.titulo}>Fecha y hora</Text>
+          <Text style={styles.contenido}>{fechaHora}</Text>
+        </View>
 
-      <View style={styles.item}>
-        <Text style={styles.titulo}>Consulta</Text>
-        <Text style={styles.contenido}>{consulta}</Text>
-      </View>
+        <View style={styles.item}>
+          <Text style={styles.titulo}>Consulta</Text>
+          <Text style={styles.contenido}>{consulta}</Text>
+        </View>
 
-      <View style={styles.item}>
-        <Text style={styles.titulo}>Servicio</Text>
-        <Text style={styles.contenido}>{servicio}</Text>
-      </View>
+        <View style={styles.item}>
+          <Text style={styles.titulo}>Servicio</Text>
+          <Text style={styles.contenido}>{servicio}</Text>
+        </View>
 
-      <View style={styles.item}>
-        <Text style={styles.titulo}>Notas</Text>
-        <Text style={styles.contenido}>{notas}</Text>
+        <View style={styles.item}>
+          <Text style={styles.titulo}>Notas</Text>
+          <Text style={styles.contenido}>{notas}</Text>
+        </View>
       </View>
 
       <TouchableOpacity style={styles.botonConfirmar} onPress={handleConfirm}>
         <Text style={styles.textoBoton}>Confirmar cita</Text>
       </TouchableOpacity>
 
-      {/* Modal de confirmación */}
       <Modal
         visible={modalVisible}
         animationType="fade"
@@ -92,8 +92,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    paddingTop: 60,
-    backgroundColor: "#f3f3f3"
+    backgroundColor: "#f3f3f3",
+  },
+  resumenBox: {
+    borderWidth: 2,
+    borderColor: BORDER_COLOR,
+    borderRadius: 12,
+    padding: 16,
+    marginBottom: 100,
   },
   introText: {
     fontSize: 18,

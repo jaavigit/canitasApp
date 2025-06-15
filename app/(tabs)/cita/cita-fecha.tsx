@@ -28,7 +28,7 @@ const clinicas: Clinica[] = [
     id: 1,
     nombre: "Madrid - Vallecas - CC La Gavia",
     fechas: [
-      { fecha: "2025-06-13", horas: ["09:00", "11:00", "15:00"] },
+      { fecha: "2025-06-15", horas: ["09:00", "11:00", "15:00"] },
       { fecha: "2025-06-14", horas: ["10:00", "13:00"] },
     ],
   },
@@ -36,7 +36,7 @@ const clinicas: Clinica[] = [
     id: 2,
     nombre: "Barcelona - Eixample",
     fechas: [
-      { fecha: "2025-06-15", horas: ["10:00", "13:00", "14:30"] },
+      { fecha: "2025-06-15", horas: ["10:00", "14:30"] },
       { fecha: "2025-06-13", horas: ["10:00", "13:00"] },
     ],
   },
@@ -44,7 +44,10 @@ const clinicas: Clinica[] = [
     id: 3,
     nombre: "Valencia - Centro",
     fechas: [
-      { fecha: "2025-06-17", horas: [] },
+      { fecha: "2025-06-15", horas: ["09:00", "11:00", "15:00", "09:00", "11:00", "15:00", "09:00", "11:00", "15:00", "09:00", "11:00", "15:00",
+          "09:00", "11:00", "15:00", "09:00", "11:00", "15:00", "09:00", "11:00", "15:00", "09:00", "11:00", "15:00", "09:00", "11:00", "15:00", 
+          "09:00", "11:00", "15:00", "09:00", "11:00", "15:00", "09:00", "11:00", "15:00", "09:00", "11:00", "15:00", "09:00", "11:00", "15:00"
+      ] },
       { fecha: "2025-06-18", horas: ["08:00", "09:30"] },
     ],
   },
@@ -228,7 +231,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    paddingTop: 60,
     backgroundColor: "#f3f3f3",
   },
   fechaTexto: {
@@ -295,6 +297,7 @@ const styles = StyleSheet.create({
   },
   contenedorHoras: {
     flex: 1,
+    marginBottom: 70,
   },
   filaHoras: {
     flexDirection: "row",
