@@ -4,7 +4,7 @@
     "slug": "CanitasApp",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/iconApp.png",
     "scheme": "canitasapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
@@ -37,6 +37,13 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "c28b94e9-b0a8-43de-9e75-19e30d424fd2"
+      }
+    },
+    "owner": "jaaviexpo"
   }
 }

@@ -4,6 +4,7 @@ import { useRouter } from "expo-router";
 import { useState } from "react";
 import {
   Image,
+  Linking,
   Pressable,
   StyleSheet,
   Text,
@@ -20,6 +21,11 @@ export default function LoginInicio() {
 
   const handleLogin = () => {
     router.replace("home");
+  };
+
+  const handleOpenWhatsApp = () => {
+    const url = "https://api.whatsapp.com/send/?phone=34671360703&text&type=phone_number&app_absent=0";
+    Linking.openURL(url);
   };
 
   return (
@@ -78,6 +84,14 @@ export default function LoginInicio() {
             <Text style={styles.bottomButtonText}>Ventajas</Text>
           </Pressable>
         </View>
+
+        {/* Botón flotante de WhatsApp */}
+        <TouchableOpacity
+          style={styles.whatsappButton}
+          onPress={handleOpenWhatsApp}
+        >
+          <FontAwesome name="whatsapp" size={28} color="#fff" />
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
@@ -89,6 +103,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#f3f3f3",
     justifyContent: "center",
     alignItems: "center",
+    paddingBottom: 60
   },
   panel: {
     backgroundColor: "#45363A",
@@ -157,5 +172,14 @@ const styles = StyleSheet.create({
   },
   logo: {
     marginLeft: 30,
+  },
+  whatsappButton: {
+    position: "absolute",
+    bottom: 15,
+    right: 15,
+    backgroundColor: "#25D366",
+    padding: 16,
+    borderRadius: 50,
+    elevation: 5,
   },
 });
