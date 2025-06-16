@@ -1,5 +1,5 @@
-import Feather from '@expo/vector-icons/Feather';
-import FontAwesome from '@expo/vector-icons/FontAwesome';
+import Feather from "@expo/vector-icons/Feather";
+import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import {
@@ -24,75 +24,86 @@ export default function LoginInicio() {
   };
 
   const handleOpenWhatsApp = () => {
-    const url = "https://api.whatsapp.com/send/?phone=34671360703&text&type=phone_number&app_absent=0";
+    const url =
+      "https://api.whatsapp.com/send/?phone=34671360703&text&type=phone_number&app_absent=0";
     Linking.openURL(url);
   };
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#45363A' }}>
-      <View style={styles.container}>
-        <View style={styles.logoContainer}>
-          <Image
-            source={require('../assets/images/CanitasLogo.png')}
-            style={styles.logo}
-            resizeMode="cover"
-          />
-        </View>
-
-        <View style={styles.panel}>
-          <View style={styles.iconInputWrapper}>
-            <FontAwesome name="user-o" size={24} color="white" style={styles.icon} />
-            <TextInput
-              style={styles.input}
-              placeholder="Número de socio"
-              placeholderTextColor="#ccc"
-              keyboardType="numeric"
-              value={numeroSocio}
-              onChangeText={setNumeroSocio}
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#45363A" }}>
+        <View style={styles.container}>
+          <View style={styles.logoContainer}>
+            <Image
+              source={require("../assets/images/CanitasLogo.png")}
+              style={styles.logo}
+              resizeMode="cover"
             />
           </View>
 
-          <View style={styles.iconInputWrapper}>
-            <Feather name="phone-call" size={24} color="white" style={styles.icon} />
-            <TextInput
-              style={styles.input}
-              placeholder="Teléfono"
-              placeholderTextColor="#ccc"
-              keyboardType="phone-pad"
-              value={telefono}
-              onChangeText={setTelefono}
-            />
+          <View style={styles.panel}>
+            <View style={styles.iconInputWrapper}>
+              <FontAwesome
+                name="user-o"
+                size={24}
+                color="white"
+                style={styles.icon}
+              />
+              <TextInput
+                style={styles.input}
+                placeholder="Número de socio"
+                placeholderTextColor="#ccc"
+                keyboardType="numeric"
+                value={numeroSocio}
+                onChangeText={setNumeroSocio}
+              />
+            </View>
+
+            <View style={styles.iconInputWrapper}>
+              <Feather
+                name="phone-call"
+                size={24}
+                color="white"
+                style={styles.icon}
+              />
+              <TextInput
+                style={styles.input}
+                placeholder="Teléfono"
+                placeholderTextColor="#ccc"
+                keyboardType="phone-pad"
+                value={telefono}
+                onChangeText={setTelefono}
+              />
+            </View>
+
+            <TouchableOpacity style={styles.button} onPress={handleLogin}>
+              <Text style={styles.buttonText}>Iniciar sesión</Text>
+            </TouchableOpacity>
           </View>
 
-          <TouchableOpacity style={styles.button} onPress={handleLogin}>
-            <Text style={styles.buttonText}>Iniciar sesión</Text>
+          <View style={styles.bottomButtonsContainer}>
+            <Pressable
+              onPress={() => router.push("/nuevocliente")}
+              style={[styles.bottomButton, styles.leftButton]}
+            >
+              <Text style={styles.bottomButtonText}>Hazte Socio</Text>
+            </Pressable>
+
+            <Pressable
+              onPress={() => router.push("/ventajas")}
+              style={[styles.bottomButton, styles.rightButton]}
+            >
+              <Text style={styles.bottomButtonText}>Ventajas</Text>
+            </Pressable>
+          </View>
+
+          {/* Botón flotante de WhatsApp */}
+          <TouchableOpacity
+            style={styles.whatsappButton}
+            onPress={handleOpenWhatsApp}
+          >
+            <FontAwesome name="whatsapp" size={28} color="#fff" />
           </TouchableOpacity>
         </View>
-
-        <View style={styles.bottomButtonsContainer}>
-          <Pressable
-            onPress={() => router.push("/nuevocliente")}
-            style={[styles.bottomButton, styles.leftButton]}
-          >
-            <Text style={styles.bottomButtonText}>Hazte Socio</Text>
-          </Pressable>
-
-          <Pressable
-            onPress={() => router.push("/ventajas")}
-            style={[styles.bottomButton, styles.rightButton]}
-          >
-            <Text style={styles.bottomButtonText}>Ventajas</Text>
-          </Pressable>
-        </View>
-
-        {/* Botón flotante de WhatsApp */}
-        <TouchableOpacity
-          style={styles.whatsappButton}
-          onPress={handleOpenWhatsApp}
-        >
-          <FontAwesome name="whatsapp" size={28} color="#fff" />
-        </TouchableOpacity>
-      </View>
     </SafeAreaView>
   );
 }
@@ -103,7 +114,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#f3f3f3",
     justifyContent: "center",
     alignItems: "center",
-    paddingBottom: 60
+    paddingBottom: 60,
   },
   panel: {
     backgroundColor: "#45363A",
@@ -159,7 +170,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   bottomButtonText: {
-    color: 'white',
+    color: "white",
     fontWeight: "bold",
     fontSize: 17,
     textAlign: "center",

@@ -15,7 +15,7 @@ const FormNuevaMascota = () => {
   const [clinica, setClinica] = useState("");
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#45363A" }}>
+    <SafeAreaView edges={['left', 'right', 'bottom']} style={{ flex: 1, backgroundColor: "#45363A" }}>
       <View style={styles.container}>
         <Text style={styles.sectionTitle}>Datos de la Mascota</Text>
 

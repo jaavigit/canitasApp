@@ -20,7 +20,7 @@ const FormNuevoCliente = () => {
   const [poblacion, setPoblacion] = useState("");
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#45363A" }}>
+    <SafeAreaView edges={['left', 'right', 'bottom']} style={{ flex: 1, backgroundColor: "#45363A" }}>
       <View style={styles.container}>
         <Text style={styles.sectionTitle}>Datos Personales</Text>
 

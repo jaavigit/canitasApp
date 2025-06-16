@@ -4,7 +4,7 @@
     "slug": "CanitasApp",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/iconApp.png",
+    "icon": "./assets/images/iconApk.png",
     "scheme": "canitasapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
@@ -13,10 +13,11 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./assets/images/iconApk.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.jaaviexpo.CanitasApp"
     },
     "web": {
       "bundler": "metro",

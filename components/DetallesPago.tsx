@@ -14,7 +14,7 @@ const DetallesPago = () => {
   const [acceptedTerms, setAcceptedTerms] = useState(false);
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#45363A" }}>
+    <SafeAreaView edges={['left', 'right', 'bottom']} style={{ flex: 1, backgroundColor: "#45363A" }}>
       <View style={styles.container}>
         {/* Cuadro resumen */}
         <View style={styles.resumenBox}>
